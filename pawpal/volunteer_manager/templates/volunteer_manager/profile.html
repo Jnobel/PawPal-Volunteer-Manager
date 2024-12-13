@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Email: {{ user.email }}</p>
+
+    {% if volunteer %}
+        <p><strong>Phone:</strong> {{ volunteer.phone_number }}</p>
+        <p><strong>Skills:</strong> {{ volunteer.skills }}</p>
+        <p><strong>Total Hours:</strong> {{ volunteer.total_hours }}</p>
+    {% else %}
+        <p>You do not have a volunteer profile set up yet.</p>
+    {% endif %}
+
+    <h3>Signed-Up Shifts</h3>
+    <ul>
+        {% for shift in signed_up_shifts %}
+            <li>
+                <strong>{{ shift.event_name }}</strong> - 
+                Date: {{ shift.date }}, 
+                Time: {{ shift.start_time|date:"g:i a" }} - {{ shift.end_time|date:"g:i a" }}
+                <form method="post" action="{% url 'drop_shift' shift.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Drop Shift</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No signed-up shifts yet.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add a button to edit the profile -->
+    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+</div>
+{% endblock %}
+
