@@ -1,0 +1,19 @@
+digraph UML_Class_Diagram {
+	rankdir=LR
+	User [label="User
+- username: CharField
+- email: EmailField
+- password: CharField" shape=record]
+	Volunteer [label="Volunteer
+- phone_number: CharField
+- skills: TextField
+- total_hours: FloatField" shape=record]
+	Shift [label="Shift
+- event_name: CharField
+- date: DateField
+- start_time: TimeField
+- end_time: TimeField
+- max_volunteers: IntegerField" shape=record]
+	User -> Volunteer [label="1 to 1"]
+	Volunteer -> Shift [label="Many to Many"]
+}

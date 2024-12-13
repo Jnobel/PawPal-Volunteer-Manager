@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -77,7 +75,7 @@ TEMPLATES = [
 
 # Static files settings
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 WSGI_APPLICATION = 'pawpal.wsgi.application'
 
