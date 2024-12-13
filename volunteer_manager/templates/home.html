@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to PawPal{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to PawPal Volunteer Manager</h1>
+    <p>Your one-stop solution to manage volunteer shifts and events.</p>
+
+    {% if not user.is_authenticated %}
+    <div class="sign-up-section">
+        <h2>Join Us as a Volunteer!</h2>
+        <p>Sign up to make a difference in your community.</p>
+        <a href="{% url 'volunteer_sign_up' %}" class="btn btn-success">Sign Up Now</a>
+    </div>
+    {% endif %}
+</div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #007bff;
+    }
+    p {
+        text-align: center;
+        font-size: 16px;
+    }
+    .sign-up-section {
+        text-align: center;
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+    .sign-up-section h2 {
+        color: #28a745;
+    }
+    .sign-up-section p {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+    .btn-success {
+        background-color: #28a745;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+    }
+</style>
+{% endblock %}

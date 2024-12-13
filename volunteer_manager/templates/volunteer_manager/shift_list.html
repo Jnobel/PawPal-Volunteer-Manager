@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Upcoming Shifts{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Upcoming Volunteer Shifts</h1>
+    
+    <!-- Loop through shifts and display them -->
+    {% for shift in shifts %}
+    <div class="shift">
+        <div class="shift-title">{{ shift.event_name }}</div>
+        <div class="shift-details">
+            Date: {{ shift.date }} | Time: {{ shift.start_time }} - {{ shift.end_time }}
+        </div>
+        <div class="shift-details">
+            Volunteers Needed: {{ shift.max_volunteers|default:"N/A" }}
+        </div>
+        <a href="{% url 'sign_up' shift.id %}" class="sign-up-button">Sign Up</a>  <!-- Sign up button -->
+    </div>
+    {% empty %}
+    <p>No shifts available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #0056b3;
+    }
+    .shift {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+    }
+    .shift:last-child {
+        border-bottom: none;
+    }
+    .shift-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0056b3;
+    }
+    .shift-details {
+        font-size: 14px;
+        color: #666;
+    }
+    .sign-up-button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #28a745;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .sign-up-button:hover {
+        background-color: #218838;
+    }
+</style>
